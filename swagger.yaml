@@ -32,6 +32,25 @@ paths:
               $ref: '#/definitions/Astronauta'
         default:
           description: Errore
+   /displayid/{astroId}:
+    get:
+      description: cerca un astronauta dato l'id
+      operationId: searchAstronauta
+      parameters:
+        - name: astroId
+          in: path
+          description: ID dell'astronauta da cercare
+          required: true
+          type: string
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Astronauta'
+        default:
+          description: Errore
    /add:
     post:
       description: aggiunge un astronauta
