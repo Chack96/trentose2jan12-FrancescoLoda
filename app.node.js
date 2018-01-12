@@ -34,4 +34,9 @@ app.use(express.static(__dirname + '/docs', opzioni));
 
 var astronauti = {};
 
+app.get('/display/', function (req, res) {
+  res.send(astronauti);
+  res.sendStatus(200);
+});
+
 module.exports = app;
