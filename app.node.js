@@ -34,24 +34,26 @@ app.use(express.static(__dirname + '/docs', opzioni));
 
 var astronauti = {};
 
-app.get('/displayid/:astroId', function (req, res) {
-  const assignmentId = req.params.astroId;
+app.put('/modifica/', function (req, res) {
+  if(req.body.astroId==null || req.body.firstName==null || req.body.lastName==null || req.body.isInSpace==null){
+    res.sendStatus(500);
+  }
+  var task = req.body.astroId;
   var index = -1;
-  for(var i=0; i<astronauti.length; i++)
-  {
-    if(astronauti[i].astroId===astroId)
-    {
+  for(var i=0; i<astronauti.length; i++){
+    if(lista[i].astroId==astroId){
       index = i;
     }
   }
-
-  if(index>-1){
-    astronauti.splice(index, 1);
+  if(index>-1)
+  {
+    lista[index].taskId = req.body.firstName;
+    lista[index].workerId = req.body.lastName;
+    lista[index].assignmentResult = req.body.isInSpace;
     res.sendStatus(200);
   }
-  else
-  {
-      res.sendStatus(500);
+  else{
+    res.sendStatus(500);
   }
 });
 
