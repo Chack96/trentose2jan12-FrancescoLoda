@@ -34,8 +34,17 @@ app.use(express.static(__dirname + '/docs', opzioni));
 
 var astronauti = {};
 
-app.get('/display/', function (req, res) {
-  res.send(astronauti);
+app.post('/add/', function (req, res) {
+  if(req.body.firstName==null || req.body.lastName==null || req.body.isInSpace==null){
+    res.sendStatus(500);
+  }
+  var astronauta ={
+    astroId : uuid(),
+    firstName : req.body.firstName,
+    lastName : req.body.lastName,
+    isInSpace : req.body.isInSpace,
+  };
+  astronauti.push(astronauta);
   res.sendStatus(200);
 });
 
