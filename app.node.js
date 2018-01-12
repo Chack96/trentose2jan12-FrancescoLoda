@@ -34,6 +34,11 @@ app.use(express.static(__dirname + '/docs', opzioni));
 
 var astronauti = {};
 
+app.get('/display/', function (req, res) {
+  res.send(astronauti);
+  res.sendStatus(200);
+});
+
 app.post('/add/', function (req, res) {
   if(req.body.firstName==null || req.body.lastName==null || req.body.isInSpace==null){
     res.sendStatus(500);
